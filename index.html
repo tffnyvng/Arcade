@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Tic-Tac-Toe</title>
-        <link rel="stylesheet" href="./style.css/" />
+        <link rel="stylesheet" href="./style.css" />
         <script defer src ="./app.js"></script>
     </head> 
     <body>
@@ -9,7 +9,15 @@
             <h1>Tic-Tac-Toe</h1>
         </header>
         <main>
+            <form>
+                <label for="p1">PLAYER 1: </label>
+                <input type="text" id="p1"/> 
+                <label for="p2">PLAYER 2: </label>
+                <input type="text" id="p2"/> 
+            </form>
+            <button type="button">Start!</button>
             <div id="board"></div>
+
         </main>
     </body>
 </html>

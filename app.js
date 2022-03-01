@@ -1,0 +1,1 @@
+document.body.querySelector('script').style.display = 'none';
