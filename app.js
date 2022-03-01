@@ -1,22 +1,5 @@
 document.body.querySelector('script').style.display = 'none';
 
-//////////
-/* DATA */
-//////////
-
-//we need the x's & o's for the players
-const images = [
-    {
-        id: 0,
-        name: "p1",
-        url: "https://i.pinimg.com/originals/b4/3f/06/b43f06e8c012d4f0d3ebd96a0ad592fe.jpg"
-    },
-    {
-        id: 1,
-        name: "p2",
-        url: "https://i.pinimg.com/originals/81/19/75/811975a313cce0a87d09c6c580fd707e.jpg"
-    }
-]
 
 /////////////////
 /* BOARD SETUP */
@@ -36,38 +19,90 @@ function createEmptyBoard () {
 
  console.log(createEmptyBoard());
 
-let numMoves = 0;
-
-// every time we click a square, we'll check numMoves
-// if numMoves % 2 === 0, it's 'X', otherwise, it's 'O'
-
-const firstSquare = document.querySelectorAll('.cell')[0]
-firstSquare.addEventListener('click', function(){
-    // ternary says, thing ? yes : no
-   const move = numMoves % 2 === 0 ? 'x' : 'o'
-    this.innerText = move
-    numMoves++
-    console.log({numMoves})
-})
-
-const secondSquare = document.querySelectorAll('.cell')[1]
-secondSquare.addEventListener('click', function(){
-    // ternary says, thing ? yes : no
-   const move = numMoves % 2 === 0 ? 'x' : 'o'
-   this.innerText = move
-    numMoves++
-    console.log({numMoves})
-})
-
 ///////////
 /* STATE */
 ///////////
 
 //this is to have replay ability; will allow the intialState to replace the current state
+const state = {
+    p1: "",
+    p2: "",
+    numMoves: 0,
+};
+
+const p1Input = document.getElementById('p1');
+const p2Input = document.getElementById('p2');
+
+p1Input.addEventListener('change', (e) => {
+    const node = e.target;
+    const playerName = node.value;
+    state.p1 = playerName;
+});
+
+p2Input.addEventListener('change', (e) => {
+    const node = e.target;
+    const playerName = node.value;
+    state.p2 = playerName;
+});
+
+const playBtn = document.getElementById("play");
+
+playBtn.addEventListener('click', () => {
+    console.log(state);
+});
+
+/////////////////////////
+/* BOARD FUNCTIONALITY */
+/////////////////////////
+
+// every time we click a square, we'll check numMoves
+// if numMoves % 2 === 0, it's 'X', otherwise, it's 'O'
+// const board = document.getElementById("board");
+
+// board.addEventListener('click', () => {
+//     const move = state.numMoves % 2 === 0 ? 'x' : 'o';
+
+//     const playerName = state.numMoves % 2 === 0 ? state.p1 : state.p2;
+
+//     this.innerText = move
+
+//     state.numMoves++;
+
+//     console.log ({playerName, move})
+// })
 
 
-//////////////////////
-/* BUILD GAME BOARD */
-//////////////////////
+for (let i = 0; i < 9; i++) {
+    const square = document.querySelectorAll('.cell')[i]
+    square.addEventListener('click', function(){
+        const move = state.numMoves % 2 === 0 ? 'x' : 'o';
 
-//we have the board, so we need to build the function of the game. players will choose their squares; have their dedicated x's & o's appear and cannot be overridden; winner will need to have their markers repeat in either a column, row, or diagonal 
+        const playerName = state.numMoves % 2 === 0 ? state.p1 : state.p2;
+
+        this.innerText = move
+
+        state.numMoves++;
+
+        console.log ({playerName, move})
+    })
+}
+
+
+// const firstSquare = document.querySelectorAll('.cell')[0]
+// firstSquare.addEventListener('click', function(){
+//     // ternary says, thing ? yes : no
+//    const move = numMoves % 2 === 0 ? 'x' : 'o'
+//     this.innerText = move
+//     numMoves++
+//     console.log({numMoves})
+// })
+
+// const secondSquare = document.querySelectorAll('.cell')[1]
+// secondSquare.addEventListener('click', function(){
+//     // ternary says, thing ? yes : no
+//    const move = numMoves % 2 === 0 ? 'x' : 'o'
+//    this.innerText = move
+//     numMoves++
+//     console.log({numMoves})
+// })
+

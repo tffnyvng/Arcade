@@ -9,13 +9,17 @@
             <h1>Tic-Tac-Toe</h1>
         </header>
         <main>
-            <form>
-                <label for="p1">PLAYER 1: </label>
-                <input type="text" id="p1"/> 
-                <label for="p2">PLAYER 2: </label>
-                <input type="text" id="p2"/> 
-            </form>
-            <button type="button">Play!</button>
+            <section id="players">
+                <div>
+                    <label for="p1">PLAYER 1: </label>
+                    <input type="text" id="p1"/> 
+                </div>
+                <div>
+                    <label for="p2">PLAYER 2: </label>
+                    <input type="text" id="p2"/> 
+                </div>
+            </section>
+            <button type="button" id="play">Play!</button>
             <div id="board">
                 <div class="cell"><span>1</span></div>
                 <div class="cell"><span>2</span></div>
