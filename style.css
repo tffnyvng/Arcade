@@ -1,111 +1,112 @@
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap");
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 html {
-    width: 100vw;
-    height: auto;
-    font-family: 'Caveat Brush', cursive;
-    font-family: 'Permanent Marker', cursive;
-    background-image: linear-gradient(#ff7f51, #FFAF87);
-    color: #721b00;
+  width: 100vw;
+  height: auto;
+  font-family: "Caveat Brush", cursive;
+  font-family: "Permanent Marker", cursive;
+  background-image: linear-gradient(#ff7f51, #ffaf87);
+  color: #721b00;
 }
 
 h1 {
-    font-size: 50px;
+  font-size: 50px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-
 body {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
 }
 
 body > * {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 1rem;
 }
 
 #players {
-    display: flex;
-    flex-direction: row;
-    margin: 1rem;
+  display: flex;
+  flex-direction: row;
+  margin: 1rem;
 }
 
 label {
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: underline;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: underline;
 }
 
 input {
-    padding: .2rem;
-    margin: 10px;
-    font-family: 'Caveat Brush', cursive;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 20px;
-    border: transparent;
-    border-radius: 34%;
-    text-align: center;
-    outline: none;
-    background-color: #ffd8be;
-    color:#721b00;
+  padding: 0.2rem;
+  margin: 10px;
+  font-family: "Caveat Brush", cursive;
+  font-family: "Permanent Marker", cursive;
+  font-size: 20px;
+  border: transparent;
+  border-radius: 34%;
+  text-align: center;
+  outline: none;
+  background-color: #ffd8be;
+  color: #721b00;
 }
 
 input:focus {
-    box-shadow: 5px 5px 5px #e36414;
-    cursor: pointer;
+  box-shadow: 5px 5px 5px #e36414;
+  cursor: pointer;
 }
 
 input:hover {
-    box-shadow: 5px 5px 5px #e36414;
+  box-shadow: 5px 5px 5px #e36414;
 }
 
 button {
-    padding: 10px;
-    font-size: 25px;
-    font-family: 'Caveat Brush', cursive;
-    font-family: 'Permanent Marker', cursive;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    color: #721b00;
-    background-color: #ffd8be;
-    border: transparent;
-    border-radius: 29%;
+  padding: 10px;
+  font-size: 25px;
+  font-family: "Caveat Brush", cursive;
+  font-family: "Permanent Marker", cursive;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  color: #721b00;
+  background-color: #ffd8be;
+  border: transparent;
+  border-radius: 29%;
 }
 
 button:hover {
-    box-shadow: 5px 5px 5px #e36414;
-    cursor: pointer;
+  box-shadow: 5px 5px 5px #e36414;
+  cursor: pointer;
 }
 
 #board {
-    display: grid;
-    grid-template-columns: 200px 200px 200px;
-    grid-template-rows: 200px 200px 200px;
-    background-image: linear-gradient(#ff7f51, #FFAF87);
-    cursor: pointer;
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+  grid-template-rows: 200px 200px 200px;
+  background-image: linear-gradient(#ff7f51, #ffaf87);
+  cursor: pointer;
 }
 
 .cell {
-    margin: 10px;
-    background-color: #ffd8be;
-    font-size: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  margin: 10px;
+  background-color: #ffd8be;
+  font-size: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cell:hover {
-    box-shadow: 5px 5px 5px #e36414;
+  box-shadow: 5px 5px 5px #e36414;
 }

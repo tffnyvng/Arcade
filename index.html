@@ -1,40 +1,40 @@
 <html>
-    <head>
-        <title>Tic-Tac-Toe</title>
-        <link rel="stylesheet" href="./style.css" />
-        <script defer src ="./app.js"></script>
-    </head> 
-    <body>
-        <header> 
-            <h1>Tic-Tac-Toe</h1>
-        </header>
-        <main>
-            <section id="players">
-                <div>
-                    <label for="p1">PLAYER 1: </label>
-                    <input type="text" id="p1"/> 
-                </div>
-                <div>
-                    <label for="p2">PLAYER 2: </label>
-                    <input type="text" id="p2"/> 
-                </div>
-            </section>
+  <head>
+    <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1>Tic-Tac-Toe</h1>
+    </header>
+    <main>
+      <section id="players">
+        <div>
+          <label for="p1">PLAYER 1: </label>
+          <input type="text" id="p1" />
+        </div>
+        <div>
+          <label for="p2">PLAYER 2: </label>
+          <input type="text" id="p2" />
+        </div>
+      </section>
 
-            <button type="button" id="play">Play!</button>
+      <button type="button" id="play">Play!</button>
 
-            <div id="board">
-                <div class="cell"><span>1</span></div>
-                <div class="cell"><span>2</span></div>
-                <div class="cell"><span>3</span></div>
-                <div class="cell"><span>4</span></div>
-                <div class="cell"><span>5</span></div>
-                <div class="cell"><span>6</span></div>
-                <div class="cell"><span>7</span></div>
-                <div class="cell"><span>8</span></div>
-                <div class="cell"><span>9</span></div>
-            </div>
+      <div id="board">
+        <div data-id="0" class="cell">1</div>
+        <div data-id="1" class="cell">2</div>
+        <div data-id="2" class="cell">3</div>
+        <div data-id="3" class="cell">4</div>
+        <div data-id="4" class="cell">5</div>
+        <div data-id="5" class="cell">6</div>
+        <div data-id="6" class="cell">7</div>
+        <div data-id="7" class="cell">8</div>
+        <div data-id="8" class="cell">9</div>
+      </div>
 
-            <button type="button" id="restart">Play again!</button>
-        </main>
-    </body>
+      <button type="button" id="restart">Play again!</button>
+    </main>
+  </body>
 </html>
