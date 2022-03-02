@@ -78,7 +78,6 @@ DOMBoard.addEventListener("click", function (event) {
   const playerName = state.numMoves % 2 === 0 ? state.p1 : state.p2;
 
   if (square.innerText === "x" || square.innerText === "o") return;
-  if (state.numMoves === 9) return;
 
   const squareId = square.dataset.id;
   state.board[squareId] = move;
@@ -87,6 +86,7 @@ DOMBoard.addEventListener("click", function (event) {
   state.numMoves++;
 
   renderState();
+  checkWinner();
 });
 
 // renderState can use your state.board to "paint" moves into the DOM
@@ -104,7 +104,45 @@ function renderState() {
   }
 }
 
-// ok, we have the x's & o's done. we need to have a square not change once it already contains a player's move.
+function checkWinner() {
+  const winningCombos = {
+    rows: [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+    ],
+    // columns: {
+    //   column1: [1, 4, 7],
+    //   column2: [2, 5, 8],
+    //   column3: [3, 6, 9],
+    // },
+    // diagonals: {
+    //   diagonal1: [1, 5, 9],
+    //   diagonal2: [3, 5, 7],
+    // },
+  };
+
+  function validatePlayerWinByMoveType(moveType) {
+    // let's iterate each winningCombos sub-object
+    // and check each field inside it
+
+    const { rows, columns, diagonals } = winningCombos;
+    console.log(state.board[rows[0][0]]);
+    rows.forEach((combo) => {
+      if (combo.every((val) => state.board[val] === moveType)) return true;
+    });
+  }
+
+  const p1Won = validatePlayerWinByMoveType("x");
+  const p2Won = validatePlayerWinByMoveType("o");
+
+  if (p1Won) {
+    console.log(`${state.p1} won!`);
+  }
+  if (p2Won) {
+    console.log(`${state.p2} won!`);
+  }
+}
 
 //how to reset
 playAgainBtn.addEventListener("click", function () {
