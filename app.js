@@ -7,6 +7,7 @@ document.body.querySelector('script').style.display = 'none';
 
 // we need to create an empty 3x3 board; so we're gonna loop thru and create 3 rows, 3 columns. for players choosing the grid, it could be done by table? not sure.
 
+//this isnt being used, delete(?)
 function createEmptyBoard () {
     const board = [];
     
@@ -24,11 +25,14 @@ function createEmptyBoard () {
 ///////////
 
 //this is to have replay ability; will allow the intialState to replace the current state
-const state = {
+const initialState = {
     p1: "",
     p2: "",
     numMoves: 0,
+    winner: null,
 };
+
+let state = {...initialState};
 
 const p1Input = document.getElementById('p1');
 const p2Input = document.getElementById('p2');
@@ -47,6 +51,8 @@ p2Input.addEventListener('change', (e) => {
 
 const playBtn = document.getElementById("play");
 
+const playAgainBtn = document.getElementById("restart");
+
 playBtn.addEventListener('click', () => {
     console.log(state);
 });
@@ -57,52 +63,32 @@ playBtn.addEventListener('click', () => {
 
 // every time we click a square, we'll check numMoves
 // if numMoves % 2 === 0, it's 'X', otherwise, it's 'O'
-// const board = document.getElementById("board");
-
-// board.addEventListener('click', () => {
-//     const move = state.numMoves % 2 === 0 ? 'x' : 'o';
-
-//     const playerName = state.numMoves % 2 === 0 ? state.p1 : state.p2;
-
-//     this.innerText = move
-
-//     state.numMoves++;
-
-//     console.log ({playerName, move})
-// })
 
 
 for (let i = 0; i < 9; i++) {
-    const square = document.querySelectorAll('.cell')[i]
+    const square = document.querySelectorAll('.cell')[i];
     square.addEventListener('click', function(){
         const move = state.numMoves % 2 === 0 ? 'x' : 'o';
 
         const playerName = state.numMoves % 2 === 0 ? state.p1 : state.p2;
 
         this.innerText = move
+        
+        if (state.numMoves === 9) {
+            return;
+        }
 
         state.numMoves++;
 
         console.log ({playerName, move})
+
+
     })
 }
 
+//how to reset
+playAgainBtn.addEventListener('click', function(){
+    // state =  {...initialState};
 
-// const firstSquare = document.querySelectorAll('.cell')[0]
-// firstSquare.addEventListener('click', function(){
-//     // ternary says, thing ? yes : no
-//    const move = numMoves % 2 === 0 ? 'x' : 'o'
-//     this.innerText = move
-//     numMoves++
-//     console.log({numMoves})
-// })
-
-// const secondSquare = document.querySelectorAll('.cell')[1]
-// secondSquare.addEventListener('click', function(){
-//     // ternary says, thing ? yes : no
-//    const move = numMoves % 2 === 0 ? 'x' : 'o'
-//    this.innerText = move
-//     numMoves++
-//     console.log({numMoves})
-// })
+})
 
