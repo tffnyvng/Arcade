@@ -104,44 +104,46 @@ function renderState() {
   }
 }
 
+const winningCombos = {
+  row1: [0, 1, 2],
+  row2: [3, 4, 5],
+  row3: [6, 7, 8],
+  // columns: [
+  //   [0, 3, 6],
+  //   [1, 4, 7],
+  //   [2, 5, 8],
+  // ],
+  // diagonals: [
+  //   [0, 4, 8],
+  //   [2, 4, 6],
+  // ],
+};
+
 function checkWinner() {
-  const winningCombos = {
-    rows: [
-      [1, 2, 3],
-      [4, 5, 6],
-      [7, 8, 9],
-    ],
-    // columns: {
-    //   column1: [1, 4, 7],
-    //   column2: [2, 5, 8],
-    //   column3: [3, 6, 9],
-    // },
-    // diagonals: {
-    //   diagonal1: [1, 5, 9],
-    //   diagonal2: [3, 5, 7],
-    // },
-  };
+  const { board } = state;
+  // i want to be able to access the spot of the DOMBoard according to the spots of the winningCombos.
+  //so far, I can log out the numbers and get the arrays of the winningCombos, but I need help with connecting the DOMBoard to the winningCombos.
+  for (const combo in winningCombos) {
+    let thisCombo = winningCombos[combo];
+    let val1 = board[thisCombo[0]];
+    let val2 = board[thisCombo[1]];
+    let val3 = board[thisCombo[2]];
 
-  function validatePlayerWinByMoveType(moveType) {
-    // let's iterate each winningCombos sub-object
-    // and check each field inside it
-
-    const { rows, columns, diagonals } = winningCombos;
-    console.log(state.board[rows[0][0]]);
-    rows.forEach((combo) => {
-      if (combo.every((val) => state.board[val] === moveType)) return true;
-    });
+    if (val1 != null && val1 === val2 && val1 === val3) {
+      console.log(`${val1} is the winner!`);
+    }
   }
+}
 
-  const p1Won = validatePlayerWinByMoveType("x");
-  const p2Won = validatePlayerWinByMoveType("o");
+function validatePlayerWinByMoveType(moveType) {
+  // let's iterate each winningCombos sub-object
+  // and check each field inside it
+  console.log(moveType);
+  const { rows, columns, diagonals } = winningCombos;
 
-  if (p1Won) {
-    console.log(`${state.p1} won!`);
-  }
-  if (p2Won) {
-    console.log(`${state.p2} won!`);
-  }
+  rows.forEach((combo) => {
+    if (combo.every((val) => state.board[val] === moveType)) return true;
+  });
 }
 
 //how to reset
