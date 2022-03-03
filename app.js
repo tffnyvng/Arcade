@@ -108,21 +108,16 @@ const winningCombos = {
   row1: [0, 1, 2],
   row2: [3, 4, 5],
   row3: [6, 7, 8],
-  // columns: [
-  //   [0, 3, 6],
-  //   [1, 4, 7],
-  //   [2, 5, 8],
-  // ],
-  // diagonals: [
-  //   [0, 4, 8],
-  //   [2, 4, 6],
-  // ],
+  column1: [0, 3, 6],
+  column2: [1, 4, 7],
+  column3: [2, 5, 8],
+  diagonal1: [0, 4, 8],
+  diagonal2: [2, 4, 6],
 };
 
 function checkWinner() {
   const { board } = state;
-  // i want to be able to access the spot of the DOMBoard according to the spots of the winningCombos.
-  //so far, I can log out the numbers and get the arrays of the winningCombos, but I need help with connecting the DOMBoard to the winningCombos.
+
   for (const combo in winningCombos) {
     let thisCombo = winningCombos[combo];
     let val1 = board[thisCombo[0]];
@@ -131,9 +126,12 @@ function checkWinner() {
 
     if (val1 != null && val1 === val2 && val1 === val3) {
       console.log(`${val1} is the winner!`);
+      return;
     }
   }
 }
+
+//I was able to get the checkWinner to work, but now I need to be able to stop the game once a winner has been decided. No one should be able to play moves once someone has won. Also need to create a draw situation.
 
 function validatePlayerWinByMoveType(moveType) {
   // let's iterate each winningCombos sub-object
