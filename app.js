@@ -33,8 +33,8 @@ function buildInitialState() {
 let state = buildInitialState();
 
 //tracking who our players are
-const p1Input = document.getElementById("p1");
-const p2Input = document.getElementById("p2");
+let p1Input = document.getElementById("p1");
+let p2Input = document.getElementById("p2");
 
 p1Input.addEventListener("change", (e) => {
   const node = e.target;
@@ -125,28 +125,29 @@ function checkWinner() {
     let val3 = board[thisCombo[2]];
 
     if (val1 != null && val1 === val2 && val1 === val3) {
-      console.log(`${val1} is the winner!`);
+      if (val1 === "x") {
+        console.log(`${state.p1} is the winner!`);
+      } else {
+        console.log(`${state.p2} is the winner!`);
+      }
       return;
     }
+    //   else if (board.forEach((cell) => {
+    //     if (cell !== "null") {
+    // console.log("It's a draw!");
+    //     }
+    //     return;
+    //   })
   }
 }
 
 //I was able to get the checkWinner to work, but now I need to be able to stop the game once a winner has been decided. No one should be able to play moves once someone has won. Also need to create a draw situation.
 
-function validatePlayerWinByMoveType(moveType) {
-  // let's iterate each winningCombos sub-object
-  // and check each field inside it
-  console.log(moveType);
-  const { rows, columns, diagonals } = winningCombos;
-
-  rows.forEach((combo) => {
-    if (combo.every((val) => state.board[val] === moveType)) return true;
-  });
-}
-
 //how to reset
 playAgainBtn.addEventListener("click", function () {
   state = buildInitialState();
+  p1Input = document.getElementById("p1").value = "";
+  p2Input = document.getElementById("p2").value = "";
   console.log(state);
   renderState();
 });
