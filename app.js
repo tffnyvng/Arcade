@@ -21,16 +21,20 @@ console.log(createEmptyBoard());
 function buildInitialState() {
   const initialState = {
     board: createEmptyBoard(),
-    p1: "",
-    p2: "",
+    p1: "Player X",
+    p2: "Player O",
     numMoves: 0,
     winner: null,
+    message: "",
+    //try to get a isPlaying boolean state up; false when finished/before & true when playing; true will be flipped when someon1 wins or moves = 9
   };
 
   return initialState;
 }
 
 let state = buildInitialState();
+
+let message = document.getElementById("message");
 
 //tracking who our players are
 let p1Input = document.getElementById("p1");
@@ -54,6 +58,7 @@ const playBtn = document.getElementById("play");
 const playAgainBtn = document.getElementById("restart");
 
 playBtn.addEventListener("click", () => {
+  message.textContent = `${state.p1}'s turn!`;
   console.log(state);
 });
 
@@ -72,8 +77,17 @@ DOMBoard.addEventListener("click", function (event) {
   if (!square.classList.contains("cell")) {
     return;
   }
+  if (state.winner) {
+    return;
+  }
 
   const move = state.numMoves % 2 === 0 ? "x" : "o";
+
+  if (move === "o") {
+    message.textContent = `${state.p1}'s turn!`;
+  } else {
+    message.textContent = `${state.p2}'s turn!`;
+  }
 
   const playerName = state.numMoves % 2 === 0 ? state.p1 : state.p2;
 
@@ -104,6 +118,7 @@ function renderState() {
   }
 }
 
+//checking to see if there are winners
 const winningCombos = {
   row1: [0, 1, 2],
   row2: [3, 4, 5],
@@ -124,24 +139,20 @@ function checkWinner() {
     let val2 = board[thisCombo[1]];
     let val3 = board[thisCombo[2]];
 
-    if (val1 != null && val1 === val2 && val1 === val3) {
+    if (val1 !== null && val1 === val2 && val1 === val3) {
       if (val1 === "x") {
-        console.log(`${state.p1} is the winner!`);
+        message.textContent = `${state.p1} is the winner!`;
+        return (state.winner = true);
       } else {
-        console.log(`${state.p2} is the winner!`);
+        message.textContent = `${state.p2} is the winner!`;
+        return (state.winner = true);
       }
+    } else if (board.every((cell) => cell !== null)) {
+      message.textContent = "It's a draw!";
       return;
     }
-    //   else if (board.forEach((cell) => {
-    //     if (cell !== "null") {
-    // console.log("It's a draw!");
-    //     }
-    //     return;
-    //   })
   }
 }
-
-//I was able to get the checkWinner to work, but now I need to be able to stop the game once a winner has been decided. No one should be able to play moves once someone has won. Also need to create a draw situation.
 
 //how to reset
 playAgainBtn.addEventListener("click", function () {
@@ -149,5 +160,6 @@ playAgainBtn.addEventListener("click", function () {
   p1Input = document.getElementById("p1").value = "";
   p2Input = document.getElementById("p2").value = "";
   console.log(state);
+  message.textContent = "";
   renderState();
 });

@@ -110,3 +110,7 @@ button:hover {
 .cell:hover {
   box-shadow: 5px 5px 5px #e36414;
 }
+
+#message {
+  font-size: 30px;
+}
