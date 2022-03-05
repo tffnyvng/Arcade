@@ -58,7 +58,11 @@ const playBtn = document.getElementById("play");
 const playAgainBtn = document.getElementById("restart");
 
 playBtn.addEventListener("click", () => {
-  message.textContent = `${state.p1}'s turn!`;
+  if (state.winner) {
+    return;
+  }
+  const playerName = state.numMoves % 2 === 0 ? state.p1 : state.p2;
+  message.textContent = `${playerName}'s turn!`;
   console.log(state);
 });
 
@@ -83,13 +87,8 @@ DOMBoard.addEventListener("click", function (event) {
 
   const move = state.numMoves % 2 === 0 ? "x" : "o";
 
-  if (move === "o") {
-    message.textContent = `${state.p1}'s turn!`;
-  } else {
-    message.textContent = `${state.p2}'s turn!`;
-  }
-
-  const playerName = state.numMoves % 2 === 0 ? state.p1 : state.p2;
+  const playerName = state.numMoves % 2 === 1 ? state.p1 : state.p2;
+  message.textContent = `${playerName}'s turn!`;
 
   if (square.innerText === "x" || square.innerText === "o") return;
 
