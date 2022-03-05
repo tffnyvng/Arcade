@@ -84,13 +84,12 @@ DOMBoard.addEventListener("click", function (event) {
   if (state.winner) {
     return;
   }
+  if (square.innerText === "x" || square.innerText === "o") return;
 
   const move = state.numMoves % 2 === 0 ? "x" : "o";
 
   const playerName = state.numMoves % 2 === 1 ? state.p1 : state.p2;
   message.textContent = `${playerName}'s turn!`;
-
-  if (square.innerText === "x" || square.innerText === "o") return;
 
   const squareId = square.dataset.id;
   state.board[squareId] = move;
